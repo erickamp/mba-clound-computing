@@ -1,12 +1,12 @@
 pipeline {
     agent any 
     stages {
-        stage('Clone the repo') {
+        stage('Checkout') {
+            
             steps {
-                echo 'clone the repo'
-                sh 'rm -fr html'
-                sh 'git clone https://github.com/erickamp/mba-clound-computing.git'
-            }
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/erickamp/mba-clound-computing.git']]])
+            }                
+            
         }
     }
 }
